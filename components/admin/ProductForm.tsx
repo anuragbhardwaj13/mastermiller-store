@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Product, CATEGORIES, UNITS } from '@/types';
 import { CldUploadWidget } from 'next-cloudinary';
 import Image from 'next/image';
@@ -44,10 +44,23 @@ export default function ProductForm({ product, onSubmit, onCancel }: ProductForm
     setFormData(prev => ({ ...prev, imageUrl: result.info.secure_url }));
   };
 
-  const handleWidgetClose = () => {
-    // Cloudinary widget sometimes leaves overflow:hidden on body, causing scroll freeze
-    document.body.style.overflow = '';
+  const observerRef = useRef<MutationObserver | null>(null);
+
+  const handleWidgetOpen = () => {
+    // Watch for Cloudinary widget overlay removal and reset body overflow
+    if (observerRef.current) observerRef.current.disconnect();
+    observerRef.current = new MutationObserver(() => {
+      if (!document.querySelector('iframe[src*="cloudinary"]')) {
+        document.body.style.overflow = '';
+        observerRef.current?.disconnect();
+      }
+    });
+    observerRef.current.observe(document.body, { childList: true, subtree: true });
   };
+
+  useEffect(() => {
+    return () => observerRef.current?.disconnect();
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -235,12 +248,11 @@ export default function ProductForm({ product, onSubmit, onCancel }: ProductForm
               <CldUploadWidget
                 uploadPreset={process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET}
                 onSuccess={handleImageUpload}
-                onClose={handleWidgetClose}
               >
                 {({ open }) => (
                   <button
                     type="button"
-                    onClick={() => open()}
+                    onClick={() => { handleWidgetOpen(); open(); }}
                     className="w-full aspect-square border-2 border-dashed border-cream-warm rounded-xl flex flex-col items-center justify-center hover:border-primary hover:bg-cream/50 transition-all group cursor-pointer"
                   >
                     <Upload className="w-10 h-10 text-muted group-hover:text-primary mb-3 transition-colors" />
