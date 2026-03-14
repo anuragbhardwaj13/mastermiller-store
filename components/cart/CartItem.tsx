@@ -46,7 +46,7 @@ export default function CartItem({ item }: CartItemProps) {
         <div className="flex items-center gap-3 mt-3">
           <div className="flex items-center border border-tan rounded-full overflow-hidden">
             <button
-              onClick={() => updateQuantity(product.id, quantity - 1)}
+              onClick={() => updateQuantity(`${product.id}_${product.unit}`, quantity - 1)}
               className="px-3 py-1.5 hover:bg-cream transition-colors"
               aria-label="Decrease quantity"
             >
@@ -56,7 +56,7 @@ export default function CartItem({ item }: CartItemProps) {
               {quantity}
             </span>
             <button
-              onClick={() => updateQuantity(product.id, quantity + 1)}
+              onClick={() => updateQuantity(`${product.id}_${product.unit}`, quantity + 1)}
               className="px-3 py-1.5 hover:bg-cream transition-colors"
               aria-label="Increase quantity"
             >
@@ -65,7 +65,7 @@ export default function CartItem({ item }: CartItemProps) {
           </div>
 
           <button
-            onClick={() => removeFromCart(product.id)}
+            onClick={() => removeFromCart(`${product.id}_${product.unit}`)}
             className="p-1.5 text-muted hover:text-red-500 transition-colors"
             aria-label="Remove from cart"
           >

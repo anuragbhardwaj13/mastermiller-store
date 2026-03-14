@@ -7,8 +7,8 @@ import toast from 'react-hot-toast';
 interface CartContextType {
   cart: CartItem[];
   addToCart: (product: Product, quantity?: number) => void;
-  removeFromCart: (productId: string) => void;
-  updateQuantity: (productId: string, quantity: number) => void;
+  removeFromCart: (cartKey: string) => void;
+  updateQuantity: (cartKey: string, quantity: number) => void;
   clearCart: () => void;
   getCartTotal: () => number;
   getCartCount: () => number;
@@ -41,40 +41,42 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
   }, [cart, isLoaded]);
 
   const addToCart = (product: Product, quantity: number = 1) => {
-    const existing = cart.find((item) => item.product.id === product.id);
+    // Use id + unit as key so different variants are separate cart items
+    const cartKey = `${product.id}_${product.unit}`;
+    const existing = cart.find((item) => `${item.product.id}_${item.product.unit}` === cartKey);
 
     if (existing) {
       setCart((prevCart) =>
         prevCart.map((item) =>
-          item.product.id === product.id
+          `${item.product.id}_${item.product.unit}` === cartKey
             ? { ...item, quantity: item.quantity + quantity }
             : item
         )
       );
-      toast.success(`Updated ${product.name} quantity`);
+      toast.success(`Updated ${product.name} (${product.unit}) quantity`);
     } else {
       setCart((prevCart) => [...prevCart, { product, quantity }]);
-      toast.success(`Added ${product.name} to cart`);
+      toast.success(`Added ${product.name} (${product.unit}) to cart`);
     }
   };
 
-  const removeFromCart = (productId: string) => {
-    const item = cart.find((item) => item.product.id === productId);
-    setCart((prevCart) => prevCart.filter((item) => item.product.id !== productId));
+  const removeFromCart = (cartKey: string) => {
+    const item = cart.find((item) => `${item.product.id}_${item.product.unit}` === cartKey);
+    setCart((prevCart) => prevCart.filter((item) => `${item.product.id}_${item.product.unit}` !== cartKey));
     if (item) {
-      toast.success(`Removed ${item.product.name} from cart`);
+      toast.success(`Removed ${item.product.name} (${item.product.unit}) from cart`);
     }
   };
 
-  const updateQuantity = (productId: string, quantity: number) => {
+  const updateQuantity = (cartKey: string, quantity: number) => {
     if (quantity <= 0) {
-      removeFromCart(productId);
+      removeFromCart(cartKey);
       return;
     }
 
     setCart((prevCart) =>
       prevCart.map((item) =>
-        item.product.id === productId ? { ...item, quantity } : item
+        `${item.product.id}_${item.product.unit}` === cartKey ? { ...item, quantity } : item
       )
     );
   };
