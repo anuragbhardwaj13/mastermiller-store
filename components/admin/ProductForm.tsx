@@ -44,6 +44,11 @@ export default function ProductForm({ product, onSubmit, onCancel }: ProductForm
     setFormData(prev => ({ ...prev, imageUrl: result.info.secure_url }));
   };
 
+  const handleWidgetClose = () => {
+    // Cloudinary widget sometimes leaves overflow:hidden on body, causing scroll freeze
+    document.body.style.overflow = '';
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
@@ -230,6 +235,7 @@ export default function ProductForm({ product, onSubmit, onCancel }: ProductForm
               <CldUploadWidget
                 uploadPreset={process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET}
                 onSuccess={handleImageUpload}
+                onClose={handleWidgetClose}
               >
                 {({ open }) => (
                   <button
