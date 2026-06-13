@@ -54,10 +54,10 @@ export default function Contact() {
         <div className="grid lg:grid-cols-2 gap-16 items-start">
           {/* Left */}
           <div>
-            <span className="text-xs font-semibold tracking-[0.2em] uppercase text-primary">Get In Touch</span>
-            <h2 className="font-heading text-5xl md:text-6xl font-bold text-charcoal mt-3 mb-6 leading-tight">
+            <span className="font-script text-primary text-2xl md:text-3xl block leading-none mb-1">Get In Touch</span>
+            <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-extrabold text-charcoal mt-2 mb-6 leading-tight">
               Visit Our<br />
-              <span className="italic text-primary">Store</span>
+              <span className="text-primary">Store</span>
             </h2>
             <p className="text-muted text-sm leading-relaxed mb-10 max-w-md">
               Come experience the Master Miller difference in person. We&apos;re open every day to serve you fresh products.
@@ -66,7 +66,7 @@ export default function Contact() {
             <div className="space-y-6">
               {contactItems.map((item) => (
                 <div key={item.label} className="flex items-start gap-4">
-                  <div className="w-9 h-9 rounded-full bg-cream flex items-center justify-center shrink-0 mt-0.5">
+                  <div className="w-9 h-9 rounded-full bg-primary/10 flex items-center justify-center shrink-0 mt-0.5">
                     <item.icon className="w-4 h-4 text-primary" />
                   </div>
                   <div>
@@ -79,7 +79,7 @@ export default function Contact() {
           </div>
 
           {/* Map */}
-          <div className="rounded-2xl overflow-hidden h-[500px] bg-cream">
+          <div className="rounded-2xl overflow-hidden h-[300px] sm:h-[400px] lg:h-[500px] bg-cream-dark border border-cream-warm">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3508.985!2d77.08!3d28.41!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjjCsDI0JzM2LjAiTiA3N8KwMDQnNDguMCJF!5e0!3m2!1sen!2sin!4v1234567890"
               width="100%"

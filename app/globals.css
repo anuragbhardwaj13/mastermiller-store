@@ -4,17 +4,22 @@
 
 @layer base {
   body {
-    @apply bg-cream text-charcoal font-body;
+    @apply bg-cream text-muted font-body;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-heading;
+    @apply font-heading text-charcoal;
   }
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+
+  /* Maati decorative handwritten tagline */
+  .font-script {
+    font-family: var(--font-grace), "Covered By Your Grace", cursive;
   }
 }
 
@@ -23,22 +28,36 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Custom scrollbar */
+/* Respect users who prefer reduced motion (accessibility) */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* Custom scrollbar — brand green */
 ::-webkit-scrollbar {
   width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #F1F2E2;
+  background: #F2F1E9;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #65371B;
+  background: #4BAF47;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #4E2A12;
+  background: #3C8C39;
 }
 
 /* Animations */
@@ -75,5 +94,15 @@ html {
 /* Divider */
 .divider-warm {
   height: 1px;
-  background: linear-gradient(to right, transparent, #E9D1BF, transparent);
+  background: linear-gradient(to right, transparent, #4BAF47, transparent);
+  opacity: 0.3;
+}
+
+/* Hide scrollbar utility (category carousel) */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }

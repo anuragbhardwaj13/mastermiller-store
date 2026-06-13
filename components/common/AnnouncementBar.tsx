@@ -1,81 +1,65 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { Phone, Mail } from 'lucide-react';
 
-function CountdownTimer() {
-  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, mins: 0, secs: 0 });
+/**
+ * Header top bar — recreates Maati's thin announcement bar above the main
+ * header: a rotating promo message on the left and contact details on the
+ * right. Uses the brand purple background.
+ */
+const messages = [
+  'Get Pure & 100% Natural Products — Freshly Milled to Order',
+  'Free Shipping On All Orders Over ₹499',
+  'Traditionally Milled • No Chemicals • No Preservatives',
+  'Visit Our Store in Sector 65, Gurugram',
+];
+
+export default function AnnouncementBar() {
+  const [index, setIndex] = useState(0);
 
   useEffect(() => {
-    // Set sale end to 2 days from now (resets each session)
-    const saleEnd = new Date();
-    saleEnd.setDate(saleEnd.getDate() + 2);
-    saleEnd.setHours(23, 59, 59, 0);
-
-    const tick = () => {
-      const now = new Date().getTime();
-      const diff = saleEnd.getTime() - now;
-      if (diff <= 0) return;
-      setTimeLeft({
-        days: Math.floor(diff / (1000 * 60 * 60 * 24)),
-        hours: Math.floor((diff / (1000 * 60 * 60)) % 24),
-        mins: Math.floor((diff / (1000 * 60)) % 60),
-        secs: Math.floor((diff / 1000) % 60),
-      });
-    };
-
-    tick();
-    const id = setInterval(tick, 1000);
+    const id = setInterval(() => {
+      setIndex((i) => (i + 1) % messages.length);
+    }, 4000);
     return () => clearInterval(id);
   }, []);
 
-  const pad = (n: number) => String(n).padStart(2, '0');
-
   return (
-    <div className="flex items-center gap-1 font-heading font-bold text-charcoal">
-      <span className="text-sm font-body font-bold tracking-wide uppercase">Sale Ends In:</span>
-      <div className="flex items-center gap-0.5 ml-2">
-        <div className="text-center">
-          <span className="text-2xl">{pad(timeLeft.days)}</span>
-          <span className="block text-[9px] font-body font-normal uppercase tracking-wider">days</span>
-        </div>
-        <span className="text-2xl mx-0.5">:</span>
-        <div className="text-center">
-          <span className="text-2xl">{pad(timeLeft.hours)}</span>
-          <span className="block text-[9px] font-body font-normal uppercase tracking-wider">Hrs</span>
-        </div>
-        <span className="text-2xl mx-0.5">:</span>
-        <div className="text-center">
-          <span className="text-2xl">{pad(timeLeft.mins)}</span>
-          <span className="block text-[9px] font-body font-normal uppercase tracking-wider">Mins</span>
-        </div>
-        <span className="text-2xl mx-0.5">:</span>
-        <div className="text-center">
-          <span className="text-2xl">{pad(timeLeft.secs)}</span>
-          <span className="block text-[9px] font-body font-normal uppercase tracking-wider">Secs</span>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-export default function AnnouncementBar() {
-  const announcements = [
-    'Freshly Milled & Packed Daily',
-    '100% Natural Products',
-    'Premium Quality Traditional Milling',
-    'Visit Our Store in Gurugram',
-  ];
-
-  return (
-    <div className="w-full">
-      {/* Scrolling Announcements */}
-      <div className="bg-primary text-white py-2 overflow-hidden">
-        <div className="animate-marquee whitespace-nowrap flex">
-          {[...announcements, ...announcements].map((text, i) => (
-            <span key={i} className="mx-8 text-xs font-medium tracking-wide">
-              {text}
+    <div className="bg-primary text-white text-xs">
+      <div className="container-custom flex items-center justify-between h-9">
+        {/* Rotating promo message (carousel) */}
+        <div className="relative flex-1 overflow-hidden h-9">
+          {messages.map((msg, i) => (
+            <span
+              key={msg}
+              className={`absolute inset-0 flex items-center font-medium tracking-wide transition-all duration-500 ${
+                i === index
+                  ? 'opacity-100 translate-y-0'
+                  : 'opacity-0 -translate-y-2 pointer-events-none'
+              }`}
+            >
+              {msg}
             </span>
           ))}
+        </div>
+
+        {/* Contact info (hidden on small screens) */}
+        <div className="hidden md:flex items-center gap-5 shrink-0 pl-4">
+          <a
+            href="tel:+918404003000"
+            className="flex items-center gap-1.5 hover:text-amber transition-colors"
+          >
+            <Phone className="w-3.5 h-3.5" />
+            +91 84040-03000
+          </a>
+          <a
+            href="mailto:mastermiller65@gmail.com"
+            className="flex items-center gap-1.5 hover:text-amber transition-colors"
+          >
+            <Mail className="w-3.5 h-3.5" />
+            mastermiller65@gmail.com
+          </a>
         </div>
       </div>
     </div>

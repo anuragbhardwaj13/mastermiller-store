@@ -25,13 +25,13 @@ export default function About() {
       <div className="container-custom">
         {/* Header */}
         <div className="max-w-3xl mb-16">
-          <span className="text-xs font-semibold tracking-[0.2em] uppercase text-primary">
+          <span className="font-script text-primary text-2xl md:text-3xl block leading-none mb-1">
             Our Story
           </span>
-          <h2 className="font-heading text-5xl md:text-6xl font-bold text-charcoal mt-3 mb-6 leading-tight">
+          <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-extrabold text-charcoal mt-2 mb-6 leading-tight">
             Milling with Purpose,
             <br />
-            <span className="italic text-primary">Serving with Heart</span>
+            <span className="text-primary">Serving with Heart</span>
           </h2>
           <p className="text-muted leading-relaxed text-base max-w-2xl">
             Master Miller was born from a simple belief: food should be pure,
@@ -47,12 +47,12 @@ export default function About() {
           {values.map((value) => (
             <div
               key={value.number}
-              className="border-t-2 border-cream-warm pt-6"
+              className="border-t-2 border-primary/20 pt-6"
             >
-              <span className="font-heading text-5xl font-bold text-tan">
+              <span className="font-heading text-5xl font-extrabold text-primary/30">
                 {value.number}
               </span>
-              <h3 className="font-heading text-2xl font-semibold text-charcoal mt-3 mb-2">
+              <h3 className="font-heading text-2xl font-bold text-charcoal mt-3 mb-2">
                 {value.title}
               </h3>
               <p className="text-muted text-sm leading-relaxed">
@@ -63,11 +63,11 @@ export default function About() {
         </div>
 
         {/* Banner strip */}
-        <div className="bg-cream rounded-2xl p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-6">
+        <div className="bg-secondary/10 border border-secondary/20 rounded-2xl p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-6">
           <div>
-            <h3 className="font-heading text-3xl md:text-4xl font-bold text-charcoal">
+            <h3 className="font-heading text-3xl md:text-4xl font-extrabold text-charcoal">
               Freshly milled,{" "}
-              <span className="italic text-primary">every day.</span>
+              <span className="text-secondary">every day.</span>
             </h3>
             <p className="text-muted mt-2 text-sm">
               Shop No. 2 &amp; 3, Sector 65, Gurugram

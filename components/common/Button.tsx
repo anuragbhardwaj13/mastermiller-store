@@ -16,19 +16,19 @@ export default function Button({
   disabled,
   ...props
 }: ButtonProps) {
-  const base = 'font-body font-medium rounded-full transition-all duration-200 inline-flex items-center justify-center tracking-wide';
+  const base = 'font-body font-bold rounded-btn transition-all duration-200 inline-flex items-center justify-center tracking-wide';
 
   const variants = {
-    primary: 'bg-primary text-white hover:bg-primary-dark disabled:bg-muted disabled:cursor-not-allowed',
+    primary: 'bg-primary text-white hover:bg-accent disabled:bg-muted disabled:cursor-not-allowed',
     secondary: 'bg-secondary text-white hover:bg-secondary-dark disabled:bg-muted disabled:cursor-not-allowed',
-    outline: 'border border-primary text-primary hover:bg-primary hover:text-white disabled:border-muted disabled:text-muted disabled:cursor-not-allowed',
-    ghost: 'text-primary hover:bg-cream disabled:text-muted disabled:cursor-not-allowed',
+    outline: 'border-2 border-primary text-primary hover:bg-primary hover:text-white disabled:border-muted disabled:text-muted disabled:cursor-not-allowed',
+    ghost: 'text-primary hover:bg-cream-dark disabled:text-muted disabled:cursor-not-allowed',
   };
 
   const sizes = {
     sm: 'px-5 py-2 text-sm',
-    md: 'px-7 py-2.5 text-sm',
-    lg: 'px-9 py-3.5 text-base',
+    md: 'px-7 py-3 text-sm',
+    lg: 'px-9 py-4 text-base',
   };
 
   return (

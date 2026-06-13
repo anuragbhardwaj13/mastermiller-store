@@ -39,9 +39,14 @@ export default function ShopByCategory() {
   return (
     <section className="section-padding bg-white">
       <div className="container-custom">
-        <h2 className="font-heading text-3xl md:text-4xl font-bold text-charcoal text-center mb-12 uppercase tracking-wide">
-          Shop by Category
-        </h2>
+        <div className="text-center mb-12">
+          <span className="font-script text-primary text-2xl md:text-3xl block leading-none mb-1">
+            Explore Our Range
+          </span>
+          <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-extrabold text-charcoal">
+            Shop by Category
+          </h2>
+        </div>
 
         <div className="relative">
           {/* Carousel */}
@@ -78,7 +83,7 @@ export default function ShopByCategory() {
             <button
               onClick={() => scroll('left')}
               disabled={!canScrollLeft}
-              className="w-10 h-10 rounded-full border border-cream-warm flex items-center justify-center text-charcoal hover:bg-cream disabled:opacity-30 transition-all"
+              className="w-11 h-11 rounded-full border border-cream-warm flex items-center justify-center text-charcoal hover:bg-cream-dark hover:text-primary hover:border-primary disabled:opacity-30 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
               aria-label="Scroll left"
             >
               <ChevronLeft className="w-5 h-5" />
@@ -86,7 +91,7 @@ export default function ShopByCategory() {
             <button
               onClick={() => scroll('right')}
               disabled={!canScrollRight}
-              className="w-10 h-10 rounded-full border border-cream-warm flex items-center justify-center text-charcoal hover:bg-cream disabled:opacity-30 transition-all"
+              className="w-11 h-11 rounded-full border border-cream-warm flex items-center justify-center text-charcoal hover:bg-cream-dark hover:text-primary hover:border-primary disabled:opacity-30 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
               aria-label="Scroll right"
             >
               <ChevronRight className="w-5 h-5" />

@@ -5,7 +5,8 @@ import { useSearchParams } from 'next/navigation';
 import { useProducts } from '@/hooks/useProducts';
 import CategoryFilter from '@/components/shop/CategoryFilter';
 import ProductGrid from '@/components/shop/ProductGrid';
-import { Loader2, Search, X } from 'lucide-react';
+import Loader from '@/components/common/Loader';
+import { Search, X } from 'lucide-react';
 
 function ShopContent() {
   const searchParams = useSearchParams();
@@ -43,12 +44,14 @@ function ShopContent() {
               placeholder="Search products..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-9 py-2.5 rounded-full border border-cream-warm bg-white text-sm text-charcoal placeholder-muted focus:outline-none focus:border-tan transition-colors"
+              aria-label="Search products"
+              className="w-full pl-10 pr-11 min-h-[44px] rounded-full border border-cream-warm bg-white text-sm text-charcoal placeholder-muted focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus:border-primary transition-colors"
             />
             {searchTerm && (
               <button
                 onClick={() => setSearchTerm('')}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-muted hover:text-charcoal"
+                aria-label="Clear search"
+                className="absolute right-1.5 top-1/2 -translate-y-1/2 w-9 h-9 flex items-center justify-center rounded-full text-muted hover:text-charcoal hover:bg-cream-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
               >
                 <X className="w-4 h-4" />
               </button>
@@ -69,9 +72,7 @@ function ShopContent() {
 
         {/* Products Grid */}
         {loading ? (
-          <div className="flex justify-center items-center py-24">
-            <Loader2 className="w-8 h-8 text-primary animate-spin" />
-          </div>
+          <Loader label="Loading products…" />
         ) : (
           <ProductGrid products={filteredProducts} />
         )}
@@ -96,11 +97,7 @@ export default function ShopPage() {
         </div>
       </div>
 
-      <Suspense fallback={
-        <div className="flex justify-center items-center py-24">
-          <Loader2 className="w-8 h-8 text-primary animate-spin" />
-        </div>
-      }>
+      <Suspense fallback={<Loader label="Loading products…" />}>
         <ShopContent />
       </Suspense>
     </div>

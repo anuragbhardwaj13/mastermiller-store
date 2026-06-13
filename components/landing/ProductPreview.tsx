@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import ProductCard from '../shop/ProductCard';
 import { useFeaturedProducts } from '@/hooks/useProducts';
-import { Loader2 } from 'lucide-react';
+import Loader from '@/components/common/Loader';
 
 const badgeRotation = ['Best Seller', 'New Arrival', 'Limited Stock', 'Popular'];
 
@@ -11,16 +11,19 @@ export default function ProductPreview() {
   const { products, loading } = useFeaturedProducts();
 
   return (
-    <section className="section-padding bg-cream">
+    <section className="section-padding bg-white border-y border-cream-warm">
       <div className="container-custom">
-        <h2 className="font-heading text-3xl md:text-4xl font-bold text-charcoal text-center mb-12 uppercase tracking-wide">
-          Best Sellers
-        </h2>
+        <div className="text-center mb-12">
+          <span className="font-script text-primary text-2xl md:text-3xl block leading-none mb-1">
+            Customer Favourites
+          </span>
+          <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-extrabold text-charcoal">
+            Best Sellers
+          </h2>
+        </div>
 
         {loading ? (
-          <div className="flex justify-center items-center py-20">
-            <Loader2 className="w-8 h-8 text-primary animate-spin" />
-          </div>
+          <Loader label="Loading best sellers…" />
         ) : products.length > 0 ? (
           <>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
@@ -37,14 +40,14 @@ export default function ProductPreview() {
             <div className="flex justify-center mt-12">
               <Link
                 href="/shop"
-                className="bg-primary text-white font-bold text-sm uppercase px-10 py-3.5 rounded-lg hover:bg-primary-dark transition-colors tracking-widest"
+                className="bg-primary text-white font-bold text-sm uppercase px-10 py-3.5 rounded-btn hover:bg-accent transition-colors tracking-widest"
               >
                 View All
               </Link>
             </div>
           </>
         ) : (
-          <div className="text-center py-20 bg-white rounded-2xl">
+          <div className="text-center py-20 bg-cream-dark rounded-2xl border border-cream-warm">
             <p className="font-heading text-2xl text-charcoal mb-2">No featured products yet</p>
             <p className="text-muted text-sm mb-6">Check back soon or browse our full catalogue</p>
             <Link

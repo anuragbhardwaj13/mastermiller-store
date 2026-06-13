@@ -1,5 +1,5 @@
-import type { Metadata } from "next";
-import { Cormorant_Garamond, Poppins } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { Manrope, Covered_By_Your_Grace } from "next/font/google";
 import "./globals.css";
 import { CartProvider } from "@/context/CartContext";
 import { Toaster } from "react-hot-toast";
@@ -7,19 +7,21 @@ import AnnouncementBar from "@/components/common/AnnouncementBar";
 import Header from "@/components/common/Header";
 import Footer from "@/components/common/Footer";
 import ScrollToTop from "@/components/common/ScrollToTop";
+import PageLoader from "@/components/common/PageLoader";
+import ServiceWorker from "@/components/common/ServiceWorker";
 
-const cormorant = Cormorant_Garamond({
+// Maati theme fonts: Manrope (headings + body), Covered By Your Grace (taglines)
+const manrope = Manrope({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  style: ["normal", "italic"],
-  variable: "--font-cormorant",
+  weight: ["300", "400", "500", "600", "700", "800"],
+  variable: "--font-manrope",
   display: "swap",
 });
 
-const poppins = Poppins({
+const grace = Covered_By_Your_Grace({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-  variable: "--font-poppins",
+  weight: ["400"],
+  variable: "--font-grace",
   display: "swap",
 });
 
@@ -38,6 +40,10 @@ export const metadata: Metadata = {
     apple: "/apple-touch-icon.png",
   },
   manifest: "/site.webmanifest",
+  appleWebApp: {
+    title: "Master Miller",
+    statusBarStyle: "default",
+  },
   openGraph: {
     title: "Master Miller - Fresh Milling Store",
     description:
@@ -47,15 +53,21 @@ export const metadata: Metadata = {
   },
 };
 
+export const viewport: Viewport = {
+  themeColor: "#4BAF47",
+};
+
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${cormorant.variable} ${poppins.variable}`}>
+    <html lang="en" className={`${manrope.variable} ${grace.variable}`}>
       <body className="min-h-screen flex flex-col" suppressHydrationWarning>
         <CartProvider>
+          <ServiceWorker />
+          <PageLoader />
           <AnnouncementBar />
           <Header />
           <main className="flex-grow">{children}</main>
@@ -66,10 +78,10 @@ export default function RootLayout({
             toastOptions={{
               duration: 3000,
               style: {
-                background: "#65371B",
+                background: "#2E6B2C",
                 color: "#fff",
-                fontFamily: "Poppins, sans-serif",
-                borderRadius: "50px",
+                fontFamily: "Manrope, sans-serif",
+                borderRadius: "10px",
                 padding: "12px 20px",
               },
             }}

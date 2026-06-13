@@ -27,8 +27,8 @@ const categoryColors: Record<string, string> = {
 const badgeStyles: Record<string, { label: string; bg: string }> = {
   'Best Seller': { label: 'Best Seller', bg: 'bg-primary' },
   'New Arrival': { label: 'New Arrival', bg: 'bg-secondary' },
-  'Limited Stock': { label: 'Limited Stock', bg: 'bg-primary-dark' },
-  'Popular': { label: 'Popular', bg: 'bg-primary-light' },
+  'Limited Stock': { label: 'Limited Stock', bg: 'bg-accent' },
+  'Popular': { label: 'Popular', bg: 'bg-amber-dark' },
 };
 
 function StarRating({ rating }: { rating: number }) {
@@ -131,9 +131,10 @@ export default function ProductCard({ product, priority = false, badge }: Produc
           <div className="flex items-center gap-2 pt-2">
             <div className="flex-1 relative">
               <select
-                className="w-full appearance-none bg-white border border-cream-warm rounded-lg px-3 py-2.5 text-sm text-charcoal focus:outline-none focus:border-primary cursor-pointer"
+                className="w-full appearance-none bg-white border border-cream-warm rounded-btn pl-3 pr-8 min-h-[44px] text-sm text-charcoal cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus:border-primary"
                 value={selectedIdx}
                 onChange={(e) => setSelectedIdx(Number(e.target.value))}
+                aria-label={`Select size for ${product.name}`}
               >
                 {variants.map((v, i) => (
                   <option key={v.unit} value={i}>
@@ -149,13 +150,14 @@ export default function ProductCard({ product, priority = false, badge }: Produc
             </div>
             <button
               onClick={handleAddToCart}
-              className="bg-primary text-white text-xs font-bold uppercase px-4 py-2.5 rounded-lg hover:bg-primary-dark transition-colors tracking-wider whitespace-nowrap"
+              className="min-h-[44px] bg-primary text-white text-xs font-bold uppercase px-4 rounded-btn hover:bg-accent active:bg-accent-dark transition-colors tracking-wider whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
+              aria-label={`Add ${product.name} to cart`}
             >
               {added ? 'Added!' : 'Add to Cart'}
             </button>
           </div>
         ) : (
-          <button disabled className="w-full bg-gray-200 text-muted text-xs font-bold uppercase px-4 py-2.5 rounded-lg tracking-wider mt-2">
+          <button disabled className="w-full min-h-[44px] bg-cream-dark text-muted text-xs font-bold uppercase px-4 rounded-btn tracking-wider mt-2 cursor-not-allowed">
             Out of Stock
           </button>
         )}

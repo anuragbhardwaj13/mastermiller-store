@@ -26,11 +26,12 @@ export default function CategoryFilter({
         <button
           key={category.key}
           onClick={() => onCategoryChange(category.key)}
-          className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 border ${
+          className={`inline-flex items-center min-h-[44px] px-5 rounded-full text-sm font-semibold transition-all duration-200 border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 ${
             selectedCategory === category.key
               ? 'bg-primary text-white border-primary'
-              : 'bg-white text-charcoal border-cream-warm hover:border-tan hover:bg-cream'
+              : 'bg-white text-charcoal border-cream-warm hover:border-primary hover:text-primary hover:bg-cream-dark'
           }`}
+          aria-pressed={selectedCategory === category.key}
         >
           {category.label}
           <span className="ml-1.5 text-xs opacity-70">{category.labelHindi}</span>

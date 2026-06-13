@@ -33,14 +33,14 @@ export default function Features() {
   ];
 
   return (
-    <section className="section-padding bg-cream">
+    <section className="section-padding bg-cream-dark">
       <div className="container-custom">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
           <div>
-            <span className="text-xs font-semibold tracking-[0.2em] uppercase text-primary">Why Us</span>
-            <h2 className="font-heading text-5xl md:text-6xl font-bold text-charcoal mt-3 leading-tight">
+            <span className="font-script text-primary text-2xl md:text-3xl block leading-none mb-1">Why Us</span>
+            <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-extrabold text-charcoal mt-2 leading-tight">
               Why Choose<br />
-              <span className="italic text-primary">Master Miller?</span>
+              <span className="text-primary">Master Miller?</span>
             </h2>
           </div>
           <p className="text-muted text-sm max-w-xs leading-relaxed">
@@ -48,14 +48,14 @@ export default function Features() {
           </p>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-tan/30">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {features.map((feature, index) => (
             <div
               key={index}
-              className="bg-white p-8 hover:bg-cream transition-colors duration-200"
+              className="bg-white border border-cream-warm rounded-2xl p-8 hover:border-primary/40 hover:shadow-card-hover transition-all duration-200"
             >
-              <span className="text-3xl mb-4 block">{feature.emoji}</span>
-              <h3 className="font-heading text-xl font-semibold text-charcoal mb-2">{feature.title}</h3>
+              <span className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-primary/10 text-3xl mb-4">{feature.emoji}</span>
+              <h3 className="font-heading text-xl font-bold text-charcoal mb-2">{feature.title}</h3>
               <p className="text-muted text-sm leading-relaxed">{feature.description}</p>
             </div>
           ))}

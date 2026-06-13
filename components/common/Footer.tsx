@@ -11,8 +11,8 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
           {/* Brand */}
           <div className="space-y-4 lg:col-span-1">
-            <div className="bg-white/10 backdrop-blur px-4 py-3 rounded-xl inline-block">
-              <Logo className="[&_span]:text-white [&_.text-muted]:text-white/60" />
+            <div className="bg-white px-5 py-4 rounded-xl inline-block">
+              <Logo height={52} />
             </div>
             <p className="text-sm leading-relaxed text-white/60">
               100% Natural, Freshly Packed, Premium Quality organic food items
@@ -35,7 +35,7 @@ export default function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-white/60 hover:text-tan transition-colors"
+                    className="text-sm text-white/60 hover:text-amber transition-colors"
                   >
                     {link.label}
                   </Link>
@@ -51,44 +51,44 @@ export default function Footer() {
             </h3>
             <ul className="space-y-3">
               <li className="flex items-start gap-2.5">
-                <Phone className="w-4 h-4 mt-0.5 shrink-0 text-tan" />
+                <Phone className="w-4 h-4 mt-0.5 shrink-0 text-amber" />
                 <div className="text-sm text-white/60 space-y-1">
                   <a
                     href="tel:+918404003000"
-                    className="hover:text-tan transition-colors block"
+                    className="hover:text-amber transition-colors block"
                   >
                     +91 84040-03000
                   </a>
                   <a
                     href="tel:+918404002000"
-                    className="hover:text-tan transition-colors block"
+                    className="hover:text-amber transition-colors block"
                   >
                     +91 84040-02000
                   </a>
                 </div>
               </li>
               <li className="flex items-start gap-2.5">
-                <Mail className="w-4 h-4 mt-0.5 shrink-0 text-tan" />
+                <Mail className="w-4 h-4 mt-0.5 shrink-0 text-amber" />
                 <a
                   href="mailto:mastermiller65@gmail.com"
-                  className="text-sm text-white/60 hover:text-tan transition-colors"
+                  className="text-sm text-white/60 hover:text-amber transition-colors"
                 >
                   mastermiller65@gmail.com
                 </a>
               </li>
               <li className="flex items-start gap-2.5">
-                <Instagram className="w-4 h-4 mt-0.5 shrink-0 text-tan" />
+                <Instagram className="w-4 h-4 mt-0.5 shrink-0 text-amber" />
                 <a
                   href="https://www.instagram.com/mastermiller_store"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm text-white/60 hover:text-tan transition-colors"
+                  className="text-sm text-white/60 hover:text-amber transition-colors"
                 >
                   @mastermiller_store
                 </a>
               </li>
               <li className="flex items-start gap-2.5">
-                <Clock className="w-4 h-4 mt-0.5 shrink-0 text-tan" />
+                <Clock className="w-4 h-4 mt-0.5 shrink-0 text-amber" />
                 <span className="text-sm text-white/60">
                   Mon–Sun, 10am – 9pm
                 </span>
@@ -102,7 +102,7 @@ export default function Footer() {
               Visit Us
             </h3>
             <div className="flex items-start gap-2.5">
-              <MapPin className="w-4 h-4 mt-0.5 shrink-0 text-tan" />
+              <MapPin className="w-4 h-4 mt-0.5 shrink-0 text-amber" />
               <address className="not-italic text-sm text-white/60 leading-relaxed">
                 Shop No. 2 & 3, Near Indian Oil Petrol Pump,
                 <br />

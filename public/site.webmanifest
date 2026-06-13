@@ -1,7 +1,29 @@
 {
+  "id": "/",
   "name": "Master Miller - Fresh Milling Store",
   "short_name": "Master Miller",
+  "description": "100% Natural, freshly milled & packed flour, spices, oils, pulses and grains. Premium traditional milling in Gurugram.",
+  "lang": "en-IN",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "#4BAF47",
+  "background_color": "#FAFAF5",
+  "categories": ["shopping", "food"],
   "icons": [
+    {
+      "src": "/web-app-manifest-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/web-app-manifest-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
     {
       "src": "/web-app-manifest-192x192.png",
       "sizes": "192x192",
@@ -15,7 +37,18 @@
       "purpose": "maskable"
     }
   ],
-  "theme_color": "#65371B",
-  "background_color": "#F1F2E2",
-  "display": "standalone"
+  "shortcuts": [
+    {
+      "name": "Shop",
+      "short_name": "Shop",
+      "url": "/shop",
+      "description": "Browse all products"
+    },
+    {
+      "name": "Cart",
+      "short_name": "Cart",
+      "url": "/cart",
+      "description": "View your cart"
+    }
+  ]
 }
